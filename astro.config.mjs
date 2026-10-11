@@ -4,7 +4,7 @@ import mdx from '@astrojs/mdx';
 import rehypeArticleCards from './src/lib/rehype-article-cards.mjs';
 
 export default defineConfig({
-  site: 'https://jskyzero.github.io',
+  site: 'https://xuvoxuvo.github.io',
   base: '/ActionGameDesign.ByAI',
   // 保留迁移前的文章地址，静态部署生成跳转页。
   redirects: {
