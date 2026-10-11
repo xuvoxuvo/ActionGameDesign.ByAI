@@ -2,7 +2,7 @@
 
 **AI 驱动的动作游戏设计知识库**：基于 AI 工作流整理动作游戏设计知识，内容多来自 GDC、CEDEC 等专业游戏会议（演讲、视频、文章）与原创方法论。AI 不一定全对，但足够高效——每篇文章都附有源链接与参考链接，供读者自行核实。
 
-托管：`https://xuvoxuvo.github.io/ActionGameDesign.ByAI/`
+托管：GitHub Pages 项目站（域名随仓库 owner 变化，不写死）。
 
 技术栈：**Astro + Tailwind CSS + @tailwindcss/typography + MDX**（纯自定义站点，非文档站）。
 

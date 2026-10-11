@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const site = (import.meta.env.SITE || '').replace(/\/$/, '');
 
 const entries = (await getCollection('docs'))
   .filter((e) => e.id !== 'index.mdx' && !e.id.endsWith('/index.mdx'))
@@ -22,7 +21,7 @@ const entries = (await getCollection('docs'))
       author,
       sourceTitle: d.source?.title ?? '',
       url: d.source?.url ?? '',
-      kbUrl: `${site}${base}/${e.slug}/`,
+      kbUrl: `${base}/${e.slug}/`,
       year: d.source?.year,
     };
   })

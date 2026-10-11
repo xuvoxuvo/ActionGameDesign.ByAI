@@ -8,7 +8,7 @@
 
 - 收集互联网上动作游戏设计分享（GDC 演讲、视频、文章）与原创方法论，做成**结构化、可检索、AI 友好**的精选集合。
 - 工作流：用户投喂 URL / 关键词 → AI 检索公开信息 → **优先以本地 XMind 归纳为准** → 分层提取 → 归档 `.mdx`。
-- 托管：`https://xuvoxuvo.github.io/ActionGameDesign.ByAI/`（GitHub Pages 项目站）。
+- 托管：GitHub Pages 项目站（域名随仓库 owner 变化，不写死）。
 
 ## 2. 架构决策
 

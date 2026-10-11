@@ -10,18 +10,6 @@ interface Props {
 }
 const { title, description, contentWidth = '880px' } = Astro.props;
 const fullTitle = title ? `${title} · 动作游戏设计知识库` : '动作游戏设计知识库【AI驱动】';
-const siteUrl = import.meta.env.SITE;
-const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
-const owner = (() => {
-  if (siteUrl) {
-    try {
-      const host = new URL(siteUrl).hostname;
-      return host.endsWith('.github.io') ? host.slice(0, -'.github.io'.length) : host.split('.')[0];
-    } catch {}
-  }
-  return 'xuvoxuvo';
-})();
-const repoUrl = `https://github.com/${owner}${basePath}`;
 
 function lastUpdated() {
   try {
@@ -53,8 +41,8 @@ const updated = lastUpdated();
 
     <footer class="site-footer">
       <div class="inner">
-        <p>喜欢本项目？<a href={repoUrl} target="_blank" rel="noopener">点个Star </a>吧！</p>
-        <p>Last updated: <a href={`${repoUrl}/commits/master`} target="_blank" rel="noopener">{updated}</a><span id="visit-count" hidden> | Hits <span id="busuanzi_value_site_pv"></span></span></p>
+        <p>喜欢本项目？<a data-repo-suffix="" target="_blank" rel="noopener">点个Star </a>吧！</p>
+        <p>Last updated: <a data-repo-suffix="/commits/master" target="_blank" rel="noopener">{updated}</a><span id="visit-count" hidden> | Hits <span id="busuanzi_value_site_pv"></span></span></p>
         <p>Compiled by <a href="https://www.deepseek.com" target="_blank" rel="noopener">DeepSeek-V4-Pro</a> | Powered by <a href="https://astro.build" target="_blank" rel="noopener">Astro</a> + <a href="https://tailwindcss.com" target="_blank" rel="noopener">Tailwind CSS</a> | Hosted on <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a></p>
         <p>Copyright © 2017-2026 设计者笔记. All rights reserved.</p>
       </div>
@@ -62,6 +50,21 @@ const updated = lastUpdated();
   </div>
 
   <script>
+    // 运行时从当前域名推导 GitHub 仓库地址，避免写死账号
+    function setRepoLinks() {
+      const host = window.location.hostname;
+      if (!host.endsWith('.github.io')) return;
+      const owner = host.slice(0, -'.github.io'.length);
+      const repo = window.location.pathname.split('/')[1];
+      if (!owner || !repo) return;
+      const base = `https://github.com/${owner}/${repo}`;
+      document.querySelectorAll('[data-repo-suffix]').forEach((a) => {
+        a.href = base + (a.getAttribute('data-repo-suffix') || '');
+      });
+    }
+    setRepoLinks();
+    document.addEventListener('astro:page-load', setRepoLinks);
+
     // 访问次数：等待不蒜子异步填充后再显示，避免加载失败时留下空计数
     (() => {
       const wrap = document.getElementById('visit-count');
